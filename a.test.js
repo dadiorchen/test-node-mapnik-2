@@ -1,7 +1,12 @@
 var mapnik = require('mapnik');
+const path = require("path");
 var fs = require('fs');
 
 describe("", () => {
+
+  it.skip("", () => {
+    console.log("path:", path.resolve(mapnik.settings.paths.input_plugins, 'geojson.input'));
+  });
 
   it("", async () => {
     console.log("ok!");
@@ -12,7 +17,7 @@ describe("", () => {
 
     var map = new mapnik.Map(256, 256);
     await new Promise((res, rej) => {
-      map.load('./stylesheet.xml', function(err,map) {
+      map.load('./stylesheet_1.xml', function(err,map) {
           if (err) throw err;
           map.zoomAll();
           var im = new mapnik.Image(256, 256);
@@ -29,5 +34,5 @@ describe("", () => {
           });
       });
     });
-  });
+  }, 1000*60);
 });

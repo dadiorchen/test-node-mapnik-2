@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-color="steelblue">
+
+    <Style name="style">
+        <Rule>
+            <PolygonSymbolizer fill="white" clip="false"/>
+        </Rule>
+    </Style>
+
+    <Layer name="countries" status="on" srs="+proj=latlong +datum=WGS84">
+      <StyleName>countries_style_label</StyleName>
+      <Datasource>
+        <Parameter name="type">postgis</Parameter>
+        <Parameter name="host">db-postgresql-sfo2-nextgen-do-user-1067699-0.db.ondigitalocean.com</Parameter>
+        <Parameter name="port">25060</Parameter>
+        <Parameter name="dbname">treetracker_dev</Parameter>
+        <Parameter name="user">doadmin</Parameter>      
+        <Parameter name="password">l5al4hwte8qmj6x8</Parameter>
+        <Parameter name="table">(select estimated_geometric_location as geometry, id  from trees where id = 196786) as world</Parameter>
+        <Parameter name="estimate_extent">false</Parameter>
+        <Parameter name="extent">-180,-90,180,89.99</Parameter>
+        <Parameter name="connect_timeout">60</Parameter>
+
+      </Datasource>
+    </Layer>
+</Map>
