@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/geojson-mapnikify": "^3.0.2-dev",
     "expect-runtime": "^0.10.1",
     "jest": "^26.6.3",
     "mapnik": "^4.5.5"

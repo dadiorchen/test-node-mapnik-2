@@ -17,7 +17,7 @@ describe("", () => {
 
     var map = new mapnik.Map(256, 256);
     await new Promise((res, rej) => {
-      map.load('./stylesheet_2.xml', function(err,map) {
+      map.load('./stylesheet-geojson.xml', function(err,map) {
           if (err) throw err;
           map.zoomAll();
           var im = new mapnik.Image(256, 256);
