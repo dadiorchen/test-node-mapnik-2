@@ -10,17 +10,19 @@ describe("", () => {
 
   it("", async () => {
     console.log("ok!");
+    const scaleH = 10;
+    const scaleV = 5;
 
     // register fonts and datasource plugins
     mapnik.register_default_fonts();
     mapnik.register_default_input_plugins();
 
-    var map = new mapnik.Map(256, 256);
+    var map = new mapnik.Map(256*scaleH, 256*scaleV);
     await new Promise((res, rej) => {
       map.load('./stylesheet.xml', function(err,map) {
           if (err) throw err;
           map.zoomAll();
-          var im = new mapnik.Image(256, 256);
+          var im = new mapnik.Image(256*scaleH, 256*scaleV);
           map.render(im, function(err,im) {
             if (err) throw err;
             im.encode('png', function(err,buffer) {
