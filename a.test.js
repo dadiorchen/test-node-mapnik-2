@@ -13,12 +13,14 @@ describe("", () => {
 
   it.only("", async () => {
     console.log("ok!");
-    const scaleH = 200;
-    const scaleV = 100;
+    const scaleH = 8;
+    const scaleV = 4;
 
     // register fonts and datasource plugins
     mapnik.register_default_fonts();
     mapnik.register_default_input_plugins();
+
+    const begin = Date.now();
 
     var map = new mapnik.Map(256*scaleH, 256*scaleV);
     await new Promise((res, rej) => {
@@ -39,6 +41,7 @@ describe("", () => {
           });
       });
     });
+    console.log("took:", Date.now() - begin);
   }, 1000*60);
 });
 
