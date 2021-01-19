@@ -3,6 +3,8 @@ const path = require("path");
 const fs = require('fs');
 const { Pool, Client } = require("pg");
 const config = require("./config");
+var parseXYZ = require('./tile.js').parseXYZ;
+var mercator = require('./sphericalmercator');
 
 
 describe("", () => {
@@ -13,8 +15,8 @@ describe("", () => {
 
   it.only("", async () => {
     console.log("ok!");
-    const scaleH = 8;
-    const scaleV = 4;
+    const scaleH = 2;
+    const scaleV = 2;
 
     // register fonts and datasource plugins
     mapnik.register_default_fonts();
@@ -27,6 +29,21 @@ describe("", () => {
       map.load('./stylesheet.xml', function(err,map) {
           if (err) throw err;
           map.zoomAll();
+        console.log("map:", map);
+        console.log("map.zoomAll:", map.zoomAll);
+        console.log("map.zoomToBox:", map.zoomToBox);
+        console.log("map.load:", map.load);
+        console.log("map.sacle:", map.scale());
+        console.log("map.scaleDenominator:", map.scaleDenominator());
+//        const ratio = map.scale();
+////        map.extent = [-180*ratio, -85*ratio, 180*ratio, 85*ratio];
+//        map.zoomToBox([-50*ratio,-50*ratio,50*ratio,50*ratio]);
+        var bbox = mercator.xyz_to_envelope(
+          parseInt(3796),
+          parseInt(3903),
+          parseInt(13), false
+        );
+        map.extent = bbox;
           var im = new mapnik.Image(256*scaleH, 256*scaleV);
           map.render(im, function(err,im) {
             if (err) throw err;
